@@ -1,3 +1,4 @@
+import os
 import time
 import ai
 import pygame
@@ -6,7 +7,7 @@ import evalute
 import numpy as np
 from pygame.locals import *
 
-
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 pygame.init()
 board = np.zeros((3,3))
 chance = 0
