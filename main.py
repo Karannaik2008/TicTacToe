@@ -1,12 +1,26 @@
 import os
+import sys
 import time
 import ai
-import pygame
-import sys
 import evalute
-import numpy as np
-from pygame.locals import *
+import subprocess
 
+def ensure_package(package_name, install_name=None):
+  if install_name is None:
+    install_name = package_name
+  try:
+    __import__(package_name)
+  except ImportError:
+    print(f"'{package_name}' not found. Automatically installing...")
+    subprocess.check_call(
+        [sys.executable, "-m", "pip", "install", install_name]
+    )
+ensure_package("pygame", "pygame-ce")  
+ensure_package("numpy")
+
+import numpy as np
+import pygame
+from pygame.locals import *
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 pygame.init()
 board = np.zeros((3,3))
